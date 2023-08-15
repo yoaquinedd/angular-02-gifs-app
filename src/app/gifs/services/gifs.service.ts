@@ -12,7 +12,7 @@ export class GifsService {
   private serviceUrl: string = 'https://api.giphy.com/v1/gifs'
 
 
-  constructor(private http: HttpClient) {
+  constructor(private https: HttpClient) {
     this.loadLocalStorage();
   }
 
@@ -63,7 +63,7 @@ export class GifsService {
       .set('limit', '10')
       .set('q', tag);
 
-    this.http.get<SearchResponse>(`${this.serviceUrl}/search`,{params: params})
+    this.https.get<SearchResponse>(`${this.serviceUrl}/search`,{params: params})
       .subscribe( resp =>{ //el subscribe sirve para escuchar la respuesta de la peticion realizada
         this.gifList = resp.data;
         console.log({gifs: this.gifList})
